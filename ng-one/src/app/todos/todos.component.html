@@ -1,0 +1,23 @@
+<div class = "container" *ngIf="todosService.todos.length; else noTodos" >
+  <div class = "el" *ngFor="let todo of todosService.todos; let i = index"  [class.online] = "todo.online"
+       [class.offline] = "!todo.online">
+    <span>
+      <strong>{{i + 1}}</strong>
+      <br><br><br><br>
+      {{todo.title}}
+      <br><br><br><br>
+    </span>
+    <button class = "rm" (click)="removeTodo(todo.id)">&times;</button>
+  </div>
+</div>
+
+<ng-template #noTodos>
+  <p style ="text-align: center;">Ну и зачем было удалять все элементы?</p>
+</ng-template>
+<div>
+  <input type = "text" placeholder = "Имя нового элемента"
+  [(ngModel)] = 'title'
+  (keydown.enter) = "addSmth()"
+  >
+  <button (click) = "addSmth()">Добавить</button>
+</div>
